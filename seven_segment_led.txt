@@ -1,0 +1,327 @@
+         ;*****************************************
+;     MDA-Win8086 EXPERIMENT PROGRAM    *
+;     FILENAME  : LED.ASM
+;     PROCESSOR : I8086
+;*****************************************
+CODE	SEGMENT
+	ASSUME	CS:CODE,DS:CODE,ES:CODE,SS:CODE
+	;
+PPIC_C	EQU	1FH      ; register address
+PPIC	EQU	1DH
+PPIB	EQU	1BH
+PPIA	EQU	19H
+
+NUM1    EQU     5H
+NUM2    EQU     2H
+	
+	ORG	1000H          ;memory allocation start
+	MOV	AL,10000000B
+	OUT	PPIC_C,AL
+	MOV	AL,11111111B
+	OUT	PPIA,AL
+	
+
+
+;FIRST INPUT
+	
+LALL:	MOV     BL,NUM1
+	
+	;ADD     BL,NUM2
+	
+	CMP     BL,0H
+	JE      L0
+	
+	CMP     BL,1H
+	JE      L1
+	
+	CMP     BL,2H
+	JE      L2
+	
+	CMP     BL,3H
+	JE      L3
+	
+	CMP     BL,4H
+	JE      L4
+	
+	CMP     BL,5H
+	JE      L5
+	
+	CMP     BL,6H
+	JE      L6
+	
+	CMP     BL,7H
+	JE      L7
+	
+	CMP     BL,8H
+	JE      L8
+	
+	CMP     BL,9H
+	JE      L9
+	
+		
+	
+L0:	MOV	AL,11000000B    ; 0 seven segment      msb 0 for decimal dp
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+        
+
+L1:     MOV	AL,01111001B     ; 1 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+
+L2:     MOV	AL,00100100B      ; 2 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+
+L3:     MOV	AL,00110000B       ; 3 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+
+L4:     MOV	AL,00011001B        ; 4 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+
+L5:     MOV	AL,00010010B         ; 5 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+
+L6:     MOV	AL,00000010B         ; 6 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+
+L7:     MOV	AL,01111000B         ; 7 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+
+L8:     MOV	AL,00000000B          ; 8 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+
+L9:     MOV	AL,00010000B          ; 9 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL2
+
+	
+	
+	
+	
+	
+;INPUT2
+
+
+LL2:    MOV     BL,NUM2
+
+
+        CMP     BL,0H
+	JE      LO0
+	
+	CMP     BL,1H
+	JE      LO1
+
+	CMP     BL,2H
+	JE      LO2
+	
+	CMP     BL,3H
+	JE      LO3
+	
+	CMP     BL,4H
+	JE      LO4
+	
+	CMP     BL,5H
+	JE      LO5
+	
+	CMP     BL,6H
+	JE      LO6
+	
+	CMP     BL,7H
+	JE      LO7
+	
+	CMP     BL,8H
+	JE      LO8
+	
+	CMP     BL,9H
+	JE      LO9
+
+
+
+
+LO0:	MOV	AL,11000000B    ; 0 seven segment      msb 0 for decimal dp
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+
+LO1:     MOV	AL,01111001B     ; 1 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+LO2:     MOV	AL,00100100B      ; 2 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+LO3:     MOV	AL,00110000B       ; 3 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+LO4:     MOV	AL,00011001B        ; 4 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+LO5:     MOV	AL,00010010B         ; 5 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+LO6:     MOV	AL,00000010B         ; 6 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+LO7:     MOV	AL,01111000B         ; 7 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+LO8:     MOV	AL,00000000B          ; 8 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+LO9:     MOV	AL,00010000B          ; 9 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LL3
+
+
+
+;OUTPUT
+
+
+LL3:    ALL    BL,NUM1
+
+
+        CMP     BL,0H
+	JE      LOI0
+	
+	CMP     BL,1H
+	JE      LOI1
+
+	CMP     BL,2H
+	JE      LOI2
+	
+	CMP     BL,3H
+	JE      LOI3
+	
+	CMP     BL,4H
+	JE      LOI4
+	
+	CMP     BL,5H
+	JE      LOI5
+	
+	CMP     BL,6H
+	JE      LOI6
+	
+	CMP     BL,7H
+	JE      LOI7
+	
+	CMP     BL,8H
+	JE      LOI8
+	
+	CMP     BL,9H
+	JE      LOI9
+
+
+
+
+LOI0:	MOV	AL,11000000B    ; 0 seven segment      msb 0 for decimal dp
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL
+
+
+LOI1:     MOV	AL,01111001B     ; 1 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL
+
+LOI2:     MOV	AL,00100100B      ; 2 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL
+
+LOI3:     MOV	AL,00110000B       ; 3 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL
+
+LOI4:     MOV	AL,00011001B        ; 4 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL
+
+LOI5:     MOV	AL,00010010B         ; 5 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL
+
+LOI6:     MOV	AL,00000010B         ; 6 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL
+
+LOI7:     MOV	AL,01111000B         ; 7 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL
+
+LOI8:     MOV	AL,00000000B          ; 8 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL
+
+LOI9:     MOV	AL,00010000B          ; 9 seven segment
+        OUT     PPIA,AL
+        CALL    DELAY
+        JMP     LALL	
+		
+	
+	
+JMP LALL	
+		
+DELAY:  MOV    CX,1111111111111111B
+TIMER1: NOP     ; DELAY NO OPERATION  4T STATES
+        NOP
+        NOP
+        NOP
+        NOP
+        NOP
+        NOP
+        NOP
+        NOP
+        NOP
+        NOP
+        NOP
+        NOP
+        NOP
+        LOOP   TIMER1
+        RET
+        ;
+CODE	ENDS
+	END
+
+
+
